@@ -4,15 +4,52 @@
     <meta charset="UTF-8">
     <title>FlappyBird</title>
     <link rel="stylesheet" type="text/css" href="./css/main.css" />
-
 </head>
 <body>
     <div id="content">
         <div class="logo"></div>
         <div class="bird"></div>
+        <div class="start"></div>
+        <div class="pipes">
+            <div class="pipe">
+                <div class="top">
+                    <div class="pipeBody"></div>
+                    <div class="pipehead"></div>
+                </div>
+                <div class="bottom">
+                    <div class="pipeBody"></div>
+                    <div class="pipehead"></div>
+                </div>
+            </div>
+            <div class="pipe">
+                <div class="top">
+                    <div class="pipeBody"></div>
+                    <div class="pipehead"></div>
+                </div>
+                <div class="bottom">
+                    <div class="pipeBody"></div>
+                    <div class="pipehead"></div>
+                </div>
+            </div>
+        </div>
         <div class="floor"></div>
+
+        <div class="gameReady">
+            <div class="ready"></div>
+            <div class="tap"></div>
+        </div>
+        <div class="gameOver">
+            <div class="over"></div>
+            <div class="result">
+                <div class="scoreBoard"></div>
+                <div class="newRecord"></div>
+                <div class="numbers"></div>
+            </div>
+            <div class="ok"></div>
+        </div>
     </div>
 </body>
+<script src="./lib/jquery-3.1.0.min.js"></script>
 <script src="./js/game.config.js"></script>
 <script src="./js/main.js"></script>
 </html>

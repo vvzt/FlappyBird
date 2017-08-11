@@ -63,11 +63,60 @@
   }
   .bird{
     width: image-width(@imgBird);
-    height: image-height(@imgBird)/3;
-    top: @marginTop + image-height(@imgLogo) - 60px;
-    margin-left: (@contentWidth - image-width(@imgBird))/2;
+    height: image-height(@imgBird)*0.8/3;
+    top: @marginTop + image-height(@imgLogo) - 40px;
+    margin-left: (@contentWidth - image-width(@imgBird)*0.8)/2;
     background-image: url(@imgBird);
+    -webkit-background-size: 80%;
+    background-size: 80%;
     .common;
+    z-index: 10;
+  }
+  .start{
+    width: image-width(@imgStart);
+    height: image-height(@imgStart);
+    top: @marginTop + @contentHeight/2 - image-height(@imgStart)*0.3;
+    margin-left: (@contentWidth - image-height(@imgStart)*0.8)/3;
+    background-image: url(@imgStart);
+    -webkit-background-size: 80%;
+    background-size: 80%;
+    .common;
+  }
+  .pipes{
+    overflow: hidden;
+  }
+  .pipe{
+    float: left;
+    height: @contentHeight - @floorHeight;
+    .top{
+      .pipeBody{
+        width: image-width(@imgPipeBody);
+        height: image-height(@imgPipeBody);
+        background-image: url(@imgPipeBody);
+        margin-left: (image-width(@imgPipeHead1) - image-width(@imgPipeBody))/2;
+      }
+      .pipehead{
+        width: image-width(@imgPipeHead1);
+        height: image-height(@imgPipeHead1);
+        background-image: url(@imgPipeHead1);
+      }
+    }
+    .bottom{
+      margin-top: @contentHeight - @floorHeight - image-height(@imgPipeHead1)*2;
+      -webkit-background-size: image-width(@imgPipeHead2) 100%;
+      background-size: image-width(@imgPipeHead2) 100%;
+      .pipeBody{
+        width: image-width(@imgPipeBody);
+        height: image-height(@imgPipeBody);
+        background-image: url(@imgPipeBody);
+        margin-left: (image-width(@imgPipeHead2) - image-width(@imgPipeBody))/2;
+      }
+      .pipehead{
+        width: image-width(@imgPipeHead2);
+        height: image-height(@imgPipeHead2);
+        background-image: url(@imgPipeHead2);
+      }
+    }
   }
   .floor{
     width: @contentWidth*2;
@@ -77,5 +126,40 @@
     background-image: url(@imgFloor);
     .common;
     background-repeat: repeat-x;
+    z-index: 10;
+  }
+
+  .gameReady{
+    width: @contentWidth;
+    height:@contentHeight;
+    position: absolute;
+    .common;
+    background-repeat:no-repeat;
+    display: none;
+    .ready{
+      width: image-width(@imgGetReady)*0.8;
+      height: image-height(@imgGetReady)*0.8;
+      background-image: url(@imgGetReady);
+      -webkit-background-size: 100%;
+      background-size: 100%;
+      position: absolute;
+      top: @marginTop + image-height(@imgGetReady)/4;
+      margin-left: (@contentWidth - image-width(@imgGetReady)*0.8)/2;
+    }
+    .tap{
+      width: image-width(@imgTap)*0.8;
+      height: image-height(@imgTap)*0.8;
+      background-image: url(@imgTap);
+      -webkit-background-size: 100%;
+      background-size: 100%;
+      position: absolute;
+      top: @marginTop + image-height(@imgTap)/1.8;
+      margin-left: (@contentWidth - image-width(@imgTap)*0.8)/2;
+    }
+  }
+  .gameOver{
+    width: @contentWidth;
+    height: @contentHeight;
+    display: none;
   }
 }

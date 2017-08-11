@@ -26,12 +26,60 @@
 }
 #content .bird {
   width: 86px;
-  height: 66.66666667px;
-  top: 108px;
-  margin-left: 207px;
+  height: 53.33333333px;
+  top: 128px;
+  margin-left: 215.6px;
   background-image: url('../lib/images/bird.png');
+  -webkit-background-size: 80%;
+  background-size: 80%;
   position: absolute;
   background-repeat: no-repeat;
+  z-index: 10;
+}
+#content .start {
+  width: 214px;
+  height: 76px;
+  top: 327.2px;
+  margin-left: 146.4px;
+  background-image: url('../lib/images/start.png');
+  -webkit-background-size: 80%;
+  background-size: 80%;
+  position: absolute;
+  background-repeat: no-repeat;
+}
+#content .pipes {
+  overflow: hidden;
+}
+#content .pipe {
+  float: left;
+  height: 550px;
+}
+#content .pipe .top .pipeBody {
+  width: 127px;
+  height: 1px;
+  background-image: url('../lib/images/pipe_body.png');
+  margin-left: 5.5px;
+}
+#content .pipe .top .pipehead {
+  width: 138px;
+  height: 64px;
+  background-image: url('../lib/images/pipe_head_1.png');
+}
+#content .pipe .bottom {
+  margin-top: 422px;
+  -webkit-background-size: 138px 100%;
+  background-size: 138px 100%;
+}
+#content .pipe .bottom .pipeBody {
+  width: 127px;
+  height: 1px;
+  background-image: url('../lib/images/pipe_body.png');
+  margin-left: 5.5px;
+}
+#content .pipe .bottom .pipehead {
+  width: 138px;
+  height: 64px;
+  background-image: url('../lib/images/pipe_head_2.png');
 }
 #content .floor {
   width: 1000px;
@@ -42,4 +90,37 @@
   position: absolute;
   background-repeat: no-repeat;
   background-repeat: repeat-x;
+  z-index: 10;
+}
+#content .gameReady {
+  width: 500px;
+  height: 600px;
+  position: absolute;
+  background-repeat: no-repeat;
+  display: none;
+}
+#content .gameReady .ready {
+  width: 372.8px;
+  height: 94.4px;
+  background-image: url('../lib/images/get_ready.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  position: absolute;
+  top: 79.5px;
+  margin-left: 63.6px;
+}
+#content .gameReady .tap {
+  width: 168px;
+  height: 210.4px;
+  background-image: url('../lib/images/tap.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  position: absolute;
+  top: 196.11111111px;
+  margin-left: 166px;
+}
+#content .gameOver {
+  width: 500px;
+  height: 600px;
+  display: none;
 }
