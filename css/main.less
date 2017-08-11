@@ -1,0 +1,81 @@
+//图片参数
+@imgBackground: '../lib/images/stage_sky.png';
+@imgBird: '../lib/images/bird.png';
+@imgGameOver: '../lib/images/game_over.png';
+@imgGetReady: '../lib/images/get_ready.png';
+@imgLogo: '../lib/images/logo.png';
+@imgNewRecord: '../lib/images/new_record.png';
+@imgNumbers: '../lib/images/numbers.png';
+@imgNyancat: '../lib/images/nyancat.png';
+@imgPipeBody: '../lib/images/pipe_body.png';
+@imgPipeHead1: '../lib/images/pipe_head_1.png';
+@imgPipeHead2: '../lib/images/pipe_head_2.png';
+@imgScoreBoard: '../lib/images/score_board.png';
+@imgShare: '../lib/images/share.png';
+@imgFloor: '../lib/images/stage_ground.png';
+@imgStart: '../lib/images/start.png';
+@imgTap: '../lib/images/tap.png';
+
+
+//content参数
+@bgcolor:#000;
+@contentWidth:500px;
+@contentHeight:600px;
+@contentBorder:2px solid black;
+
+@marginTop:50px;
+@centerMargin:@marginTop auto;
+
+//地板参数
+@floorHeight: 50px;
+@floorWidth: image-width(@imgFloor);
+
+//管子参数
+
+
+.common(){
+  position:absolute;
+  background-repeat: no-repeat;
+}
+*{
+  padding: 0;
+  margin: 0;
+}
+#content{
+  position: relative;
+  width:@contentWidth;
+  height:@contentHeight;
+  border:@contentBorder;
+  margin: @centerMargin;
+  background-image: url(@imgBackground);
+  -webkit-background-size: @contentWidth @contentHeight - @floorHeight;
+  background-size: @contentWidth @contentHeight - @floorHeight;
+  overflow: hidden;
+  .logo{
+    width: image-width(@imgLogo);
+    height: image-height(@imgLogo);
+    top: @marginTop + image-height(@imgLogo);
+    margin-left: (@contentWidth - image-width(@imgLogo)*0.8)/2;
+    background-image: url(@imgLogo);
+    -webkit-background-size: 80%;
+    background-size: 80%;
+    .common;
+  }
+  .bird{
+    width: image-width(@imgBird);
+    height: image-height(@imgBird)/3;
+    top: @marginTop + image-height(@imgLogo) - 60px;
+    margin-left: (@contentWidth - image-width(@imgBird))/2;
+    background-image: url(@imgBird);
+    .common;
+  }
+  .floor{
+    width: @contentWidth*2;
+    height: @floorHeight;
+    top: @marginTop + @contentHeight - @floorHeight*2;
+    margin-left: 0;
+    background-image: url(@imgFloor);
+    .common;
+    background-repeat: repeat-x;
+  }
+}

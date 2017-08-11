@@ -1,0 +1,45 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+#content {
+  position: relative;
+  width: 500px;
+  height: 600px;
+  border: 2px solid black;
+  margin: 50px auto;
+  background-image: url('../lib/images/stage_sky.png');
+  -webkit-background-size: 500px 550px;
+  background-size: 500px 550px;
+  overflow: hidden;
+}
+#content .logo {
+  width: 513px;
+  height: 118px;
+  top: 168px;
+  margin-left: 44.8px;
+  background-image: url('../lib/images/logo.png');
+  -webkit-background-size: 80%;
+  background-size: 80%;
+  position: absolute;
+  background-repeat: no-repeat;
+}
+#content .bird {
+  width: 86px;
+  height: 66.66666667px;
+  top: 108px;
+  margin-left: 207px;
+  background-image: url('../lib/images/bird.png');
+  position: absolute;
+  background-repeat: no-repeat;
+}
+#content .floor {
+  width: 1000px;
+  height: 50px;
+  top: 550px;
+  margin-left: 0;
+  background-image: url('../lib/images/stage_ground.png');
+  position: absolute;
+  background-repeat: no-repeat;
+  background-repeat: repeat-x;
+}
