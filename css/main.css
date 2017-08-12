@@ -11,7 +11,6 @@
   background-image: url('../lib/images/stage_sky.png');
   -webkit-background-size: 500px 550px;
   background-size: 500px 550px;
-  overflow: hidden;
 }
 #content .logo {
   width: 513px;
@@ -48,37 +47,60 @@
   background-repeat: no-repeat;
 }
 #content .pipes {
-  overflow: hidden;
+  position: absolute;
+  width: 876px;
+  height: 600px;
+  margin-left: 500px;
+}
+#content .pipesCopy {
+  position: absolute;
+  width: 876px;
+  height: 600px;
+  margin-left: 500px;
+  margin-left: 1376px;
 }
 #content .pipe {
   float: left;
   height: 550px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 #content .pipe .top .pipeBody {
-  width: 127px;
-  height: 1px;
+  width: 84.66666667px;
+  height: 10px;
   background-image: url('../lib/images/pipe_body.png');
-  margin-left: 5.5px;
+  margin-left: 3.66666667px;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  background-repeat: repeat-y;
 }
 #content .pipe .top .pipehead {
-  width: 138px;
-  height: 64px;
+  width: 92px;
+  height: 42.66666667px;
   background-image: url('../lib/images/pipe_head_1.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
 }
 #content .pipe .bottom {
-  margin-top: 422px;
+  margin-top: 200px;
   -webkit-background-size: 138px 100%;
   background-size: 138px 100%;
 }
 #content .pipe .bottom .pipeBody {
-  width: 127px;
-  height: 1px;
+  width: 84.66666667px;
+  height: 10px;
   background-image: url('../lib/images/pipe_body.png');
-  margin-left: 5.5px;
+  margin-left: 3.66666667px;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  background-repeat: repeat-y;
 }
 #content .pipe .bottom .pipehead {
-  width: 138px;
-  height: 64px;
+  width: 92px;
+  height: 42.66666667px;
+  background-image: url('../lib/images/pipe_head_1.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
   background-image: url('../lib/images/pipe_head_2.png');
 }
 #content .floor {

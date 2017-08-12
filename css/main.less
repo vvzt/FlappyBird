@@ -31,6 +31,7 @@
 @floorWidth: image-width(@imgFloor);
 
 //管子参数
+@pipeMargin: 100px;
 
 
 .common(){
@@ -50,7 +51,7 @@
   background-image: url(@imgBackground);
   -webkit-background-size: @contentWidth @contentHeight - @floorHeight;
   background-size: @contentWidth @contentHeight - @floorHeight;
-  overflow: hidden;
+  //overflow: hidden;
   .logo{
     width: image-width(@imgLogo);
     height: image-height(@imgLogo);
@@ -83,37 +84,49 @@
     .common;
   }
   .pipes{
-    overflow: hidden;
+    //overflow: hidden;
+    //z-index: -1;
+    position: absolute;
+    width: image-width(@imgPipeHead1)/1.5*3 + @pipeMargin*6;
+    height: @contentHeight;
+    margin-left: @contentWidth;
+  }
+  .pipesCopy{
+    .pipes;
+    margin-left: @contentWidth + image-width(@imgPipeHead1)/1.5*3 + @pipeMargin*6;
   }
   .pipe{
     float: left;
     height: @contentHeight - @floorHeight;
+    margin-left: @pipeMargin;
+    margin-right: @pipeMargin;
     .top{
       .pipeBody{
-        width: image-width(@imgPipeBody);
-        height: image-height(@imgPipeBody);
+        width: image-width(@imgPipeBody)/1.5;
+        height: image-height(@imgPipeBody)*10;
         background-image: url(@imgPipeBody);
-        margin-left: (image-width(@imgPipeHead1) - image-width(@imgPipeBody))/2;
+        margin-left: (image-width(@imgPipeHead1) - image-width(@imgPipeBody))/3;
+        -webkit-background-size: 100%;
+        background-size: 100%;
+        background-repeat:repeat-y;
       }
       .pipehead{
-        width: image-width(@imgPipeHead1);
-        height: image-height(@imgPipeHead1);
+        width: image-width(@imgPipeHead1)/1.5;
+        height: image-height(@imgPipeHead1)/1.5;
         background-image: url(@imgPipeHead1);
+        -webkit-background-size: 100%;
+        background-size: 100%;
       }
     }
     .bottom{
-      margin-top: @contentHeight - @floorHeight - image-height(@imgPipeHead1)*2;
+      margin-top: 200px;
       -webkit-background-size: image-width(@imgPipeHead2) 100%;
       background-size: image-width(@imgPipeHead2) 100%;
       .pipeBody{
-        width: image-width(@imgPipeBody);
-        height: image-height(@imgPipeBody);
-        background-image: url(@imgPipeBody);
-        margin-left: (image-width(@imgPipeHead2) - image-width(@imgPipeBody))/2;
+        .top .pipeBody;
       }
       .pipehead{
-        width: image-width(@imgPipeHead2);
-        height: image-height(@imgPipeHead2);
+        .top .pipehead;
         background-image: url(@imgPipeHead2);
       }
     }
