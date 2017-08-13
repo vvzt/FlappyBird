@@ -11,6 +11,7 @@
   background-image: url('../lib/images/stage_sky.png');
   -webkit-background-size: 500px 550px;
   background-size: 500px 550px;
+  overflow: hidden;
 }
 #content .logo {
   width: 513px;
@@ -47,17 +48,18 @@
   background-repeat: no-repeat;
 }
 #content .pipes {
+  z-index: 9;
   position: absolute;
   width: 876px;
   height: 600px;
   margin-left: 500px;
 }
 #content .pipesCopy {
+  z-index: 9;
   position: absolute;
   width: 876px;
   height: 600px;
   margin-left: 500px;
-  margin-left: 1376px;
 }
 #content .pipe {
   float: left;
@@ -145,4 +147,17 @@
   width: 500px;
   height: 600px;
   display: none;
+}
+#control {
+  margin-top: -500px;
+}
+#control li {
+  padding: 10px;
+  list-style-type: none;
+}
+#control .ctrl {
+  width: 200px;
+}
+#control span {
+  padding: 5px;
 }

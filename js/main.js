@@ -5,7 +5,7 @@ class bird{
         this.x = 100;
         this.v = 15;
         this.g = 10;
-        this.maxFallSpeed = 20;
+        this.maxFallSpeed = this.v*2;
         this.time = 0;//s
         this.headIndex = 0;
         this.wingsIndex = 0;
@@ -27,11 +27,10 @@ class bird{
         return setInterval(()=>{ this.time++; },1000);
     }
     init(){
-        let content = document.getElementById('content');
-        content.addEventListener('click',()=>{//点击上飞
+        window.addEventListener('click',()=>{//点击上飞
             this.v = 15;
             this.time = 0;
-            this.headIndex = -35;
+            this.headIndex = -25;
             if(this.y-80 < this.body.parentNode.offsetTop) this.y = this.body.parentNode.offsetTop;
             else this.y -= 80;
         });
@@ -42,27 +41,29 @@ class bird{
                         if(this.g*this.time>this.maxFallSpeed) this.v=this.maxFallSpeed;
                         else this.v+=this.g*this.time;
                         this.y += this.v*this.time/2;
-                        if(this.headIndex <= 35) this.headIndex+=this.g;
+                        if(this.headIndex <= 30) this.headIndex+=this.g;
                         this.body.style.transform = `rotate(${this.headIndex}deg)`;
                         //this.body.style.top = `${this.y}px`;
-                        $('.bird').stop().animate({top:`${this.y}px`},120);
+                        $('.bird').stop().animate({top:`${this.y}px`},80);
                     }
-                    },70)
+                    },50)
     }
 }
-
+//管子
 class pipe extends bird{
     constructor(){
         super();
+        this.pGo = true;
+        this.pcGo = false;
         this.pipesX = 500;
-        this.pipesCopyX = 1376;
+        this.pipesCopyX = 500;
         this.pipeHeadHeight = 64/1.5;
         this.gap = 200;
+        this.speed = 15;
         this.pipes = document.getElementsByClassName('pipes')[0].getElementsByClassName('pipe');
         this.copyPipe(this.pipes);
         this.setPipe(this.pipes);
         this.setPipe(this.pipesCopy);
-        //this.pipesMove();
     }
     copyPipe(pipes){
         let elements = [];
@@ -70,8 +71,7 @@ class pipe extends bird{
             elements.push(p.cloneNode(true));
         }
         let copy = document.createElement('div');
-        copy.className = 'pipesCopy';
-        console.log(copy);
+        copy.className = 'pipesCopy';//console.log(copy);
         document.getElementById('content').appendChild(copy);
         for(let e of elements){
             document.getElementsByClassName('pipesCopy')[0].appendChild(e);
@@ -92,14 +92,32 @@ class pipe extends bird{
     }
     pipesMove(){
         return setInterval(()=>{
-            this.pipesX-=10;
-            this.pipesCopyX-=10;
-            $(this.pipes).animate({marginLeft:`${this.pipesX}px`});
-            $(this.pipesCopy).animate({marginLeft:`${this.pipesCopyX}px`});
-        },80);
+            if(this.pcGo){
+                this.pipesCopyX -= this.speed;
+                if(this.pipesCopyX <= -400) this.pGo = true;
+                if(this.pipesCopyX <= -900) {
+                    this.pipesCopyX = 500;
+                    document.getElementsByClassName('pipesCopy')[0].style.marginLeft = `${this.pipesCopyX}px`;
+                    this.pcGo = false;
+                }
+            }
+            if(this.pGo){
+                this.pipesX -= this.speed;
+                if(this.pipesX <= -400) this.pcGo = true;
+                if(this.pipesX <= -900) {
+                    this.pipesX = 500;
+                    document.getElementsByClassName('pipes')[0].style.marginLeft = `${this.pipesX}px`;
+                    this.pGo = false;
+                }
+            }
+            $('.pipes').stop().animate({marginLeft:`${this.pipesX}px`},80);
+            $('.pipesCopy').stop().animate({marginLeft:`${this.pipesCopyX}px`},80);
+            //document.getElementsByClassName('pipes')[0].style.marginLeft = `${this.pipesX}px`;
+            //document.getElementsByClassName('pipesCopy')[0].style.marginLeft = `${this.pipesCopyX}px`;
+        },50);
     }
 }
-
+//地板
 class floor extends bird{
     constructor(){
         super();
@@ -110,32 +128,57 @@ class floor extends bird{
     }
     setLoop(){
         return setInterval(()=>{
-            this.floor.style.marginLeft = this.index + 'px';
+            this.floor.style.marginLeft = `${this.index}px`;
             this.index -= this.index <= -300 ? this.index:this.speed ;
         },50);
     }
 }
 
-document.addEventListener("DOMContentLoaded",function(){
+//DOM构建完成开始执行
+document.addEventListener("DOMContentLoaded",function() {
     let b = new bird();
     b.fly();
     let f = new floor();
     let p = new pipe();
+
     let elements = {
-        logo : document.getElementsByClassName('logo')[0],
-        bird : document.getElementsByClassName('bird')[0],
-        start : document.getElementsByClassName('start')[0]
+        logo: document.getElementsByClassName('logo')[0],
+        bird: document.getElementsByClassName('bird')[0],
+        start: document.getElementsByClassName('start')[0]
     }
+
     let gameReady = document.getElementsByClassName('gameReady')[0];
-    elements.start.addEventListener('click',()=>{//点击start
-        for(let e of Object.values(elements)){
+    elements.start.addEventListener('click', () => {//点击start
+        for (let e of Object.values(elements)) {
             e.style.display = 'none';
         }
         gameReady.style.display = 'block';
     });
-    gameReady.addEventListener('click',()=>{//ready点击
+
+    gameReady.addEventListener('click', () => {//ready点击
         b.init();
         gameReady.style.display = 'none';
         elements.bird.style.display = 'block';
+        p.pipesMove();
     })
+
+    //设置控制器
+    let ctrls = document.getElementsByClassName('ctrl');
+    let values = document.getElementsByClassName('ctrlValue');
+    for(let i = 0;i < ctrls.length; i++){
+        ctrls[i].addEventListener('change',()=>{
+            values[i].innerHTML = ctrls[i].value;
+            switch (i){
+                case 0:{
+                    p.speed = ctrls[i].value;
+                }
+                case 1:{
+                    f.speed = ctrls[i].value;
+                }
+                case 3:{
+
+                }
+            }
+        })
+    }
 })

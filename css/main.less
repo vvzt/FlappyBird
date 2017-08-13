@@ -51,7 +51,7 @@
   background-image: url(@imgBackground);
   -webkit-background-size: @contentWidth @contentHeight - @floorHeight;
   background-size: @contentWidth @contentHeight - @floorHeight;
-  //overflow: hidden;
+  overflow: hidden;
   .logo{
     width: image-width(@imgLogo);
     height: image-height(@imgLogo);
@@ -84,8 +84,7 @@
     .common;
   }
   .pipes{
-    //overflow: hidden;
-    //z-index: -1;
+    z-index: 9;
     position: absolute;
     width: image-width(@imgPipeHead1)/1.5*3 + @pipeMargin*6;
     height: @contentHeight;
@@ -93,7 +92,7 @@
   }
   .pipesCopy{
     .pipes;
-    margin-left: @contentWidth + image-width(@imgPipeHead1)/1.5*3 + @pipeMargin*6;
+    margin-left: @contentWidth;
   }
   .pipe{
     float: left;
@@ -174,5 +173,18 @@
     width: @contentWidth;
     height: @contentHeight;
     display: none;
+  }
+}
+#control{
+  margin-top: -@contentWidth;
+  li{
+    padding: 10px;
+    list-style-type: none;
+  }
+  .ctrl{
+    width: 200px;
+  }
+  span{
+    padding: 5px;
   }
 }
