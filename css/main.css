@@ -11,7 +11,18 @@
   background-image: url('../lib/images/stage_sky.png');
   -webkit-background-size: 500px 550px;
   background-size: 500px 550px;
-  overflow: hidden;
+}
+#content .score {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 456px;
+  width: 44px;
+  height: 50px;
+  background-image: url('../lib/images/numbers.png');
+  background-repeat: no-repeat;
+  -webkit-background-size: 1000%;
+  background-size: 1000%;
+  background-position: 0% 0;
 }
 #content .logo {
   width: 513px;
@@ -37,6 +48,7 @@
   z-index: 10;
 }
 #content .start {
+  cursor: pointer;
   width: 214px;
   height: 76px;
   top: 327.2px;

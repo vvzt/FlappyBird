@@ -2,6 +2,7 @@ class bird{
     constructor(){
         this.start = false;
         this.y = content.offsetTop+content.clientHeight/2;//Y轴
+        this.yBefore = 0;
         this.x = 100;
         this.v = 15;
         this.g = 10;
@@ -26,33 +27,41 @@ class bird{
     timeCount(){//计算下落时间
         return setInterval(()=>{ this.time++; },1000);
     }
+    headDirection(){
+        return setInterval(()=>{
+            if(this.y < this.body.parentNode.clientHeight + this.body.parentNode.offsetTop - 150){
+                if(this.g*this.time>this.maxFallSpeed) this.v=this.maxFallSpeed;
+                else this.v+=this.g*this.time;
+                this.y += this.v*this.time/2;
+                if(this.headIndex <= 25) this.headIndex += 5;
+                //this.body.style.transform = `rotate(${this.headIndex}deg)`;
+                $(this.body).css({transform:`rotate(${this.headIndex}deg)`});
+            }
+        },50);
+    }
+    bodysHeight(){
+        return setInterval(()=>{
+            //this.body.style.top = `${this.y}px`;
+            $(this.body).stop().animate({top:`${this.y}px`},90);
+        },40);
+    }
     init(){
         window.addEventListener('click',()=>{//点击上飞
             this.v = 15;
             this.time = 0;
-            this.headIndex = -25;
-            if(this.y-80 < this.body.parentNode.offsetTop) this.y = this.body.parentNode.offsetTop;
+            this.headIndex = -30;
+            this.y = parseInt(this.body.style.top);
+            if(this.y - 80 < this.body.parentNode.offsetTop) this.y = this.body.parentNode.offsetTop;
             else this.y -= 80;
         });
         this.body.style.cssText = `top:${this.y}px;margin-left:${this.x}px`;//初始化bird位置
         this.start = true;//表示已点击开始
-        return setInterval(()=>{
-                    if(this.y < this.body.parentNode.clientHeight + this.body.parentNode.offsetTop - 150){
-                        if(this.g*this.time>this.maxFallSpeed) this.v=this.maxFallSpeed;
-                        else this.v+=this.g*this.time;
-                        this.y += this.v*this.time/2;
-                        if(this.headIndex <= 30) this.headIndex+=this.g;
-                        this.body.style.transform = `rotate(${this.headIndex}deg)`;
-                        //this.body.style.top = `${this.y}px`;
-                        $('.bird').stop().animate({top:`${this.y}px`},80);
-                    }
-                    },50)
+        return [this.headDirection(),this.bodysHeight()];
     }
 }
 //管子
-class pipe extends bird{
+class pipe{
     constructor(){
-        super();
         this.pGo = true;
         this.pcGo = false;
         this.pipesX = 500;
@@ -118,9 +127,8 @@ class pipe extends bird{
     }
 }
 //地板
-class floor extends bird{
+class floor{
     constructor(){
-        super();
         this.index = 0;
         this.speed = 10;
         this.floor = document.getElementsByClassName('floor')[0];
@@ -133,7 +141,38 @@ class floor extends bird{
         },50);
     }
 }
+class score extends bird{
+    constructor(){
+        super();
+        this.total = 0;
+        this.n1 = 0;
+        this.n2 = 0;
+        this.n3 = 0;
+        this.css = (e)=>{ return document.defaultView.getComputedStyle(e, null) }
+        this.allPipes = document.getElementsByClassName('pipe');
+        this.nowPipe;
+        this.end = false;
+    }
+    setN(){
 
+    }
+    ifImpact(){
+        let bird = { x:this.x, y:this.y };
+        let position = [];
+        for(let i of [...this.allPipes].keys()){
+            position.push(
+                [parseInt(this.css(this.allPipes[i].getElementsByClassName('top')[0]).height),
+                parseInt(this.css(this.allPipes[i]).marginLeft)]
+            );
+            console.log(bird,position);
+        }
+    }
+    getScore(){}
+}
+
+
+
+let s = new score();
 //DOM构建完成开始执行
 document.addEventListener("DOMContentLoaded",function() {
     let b = new bird();
@@ -160,6 +199,10 @@ document.addEventListener("DOMContentLoaded",function() {
         gameReady.style.display = 'none';
         elements.bird.style.display = 'block';
         p.pipesMove();
+
+        let x = new score();
+        x.ifImpact();
+
     })
 
     //设置控制器
