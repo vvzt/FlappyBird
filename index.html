@@ -7,7 +7,11 @@
 </head>
 <body>
     <div id="content">
-        <div class="score"></div>
+        <div class="score">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
 
         <div class="logo"></div>
         <div class="bird"></div>
@@ -62,12 +66,12 @@
     </div>
     <div id="control">
         <ul>
-            <li><input type="range" class="ctrl" min="1" max="150" value="15"><span class="ctrlValue">15</span>管子的速度</li>
-            <li><input type="range" class="ctrl" min="1" max="100" value="10"><span class="ctrlValue">10</span>地板的速度</li>
-            <li><input type="range" class="ctrl" min="1" max="10"><span class="ctrlValue">6</span></li>
-            <li><input type="range" class="ctrl" min="1" max="10"><span class="ctrlValue">6</span></li>
-            <li><input type="range" class="ctrl" min="1" max="10"><span class="ctrlValue">6</span></li>
-            <li><input type="range" class="ctrl" min="1" max="10"><span class="ctrlValue">6</span></li>
+            <li><input type="range" class="ctrl" min="0" max="1" value="1" disabled style="cursor: not-allowed"><span class="ctrlValue">1</span>是否无敌</li>
+            <li><input type="range" class="ctrl" min="0" max="100" value="10"><span class="ctrlValue">10</span>地板的速度</li>
+            <li><input type="range" class="ctrl" min="0" max="150" value="15"><span class="ctrlValue">15</span>管子的速度</li>
+            <li><input type="range" class="ctrl" min="0" max="300" value="200"><span class="ctrlValue">200</span>管子的间隙</li>
+            <li><input type="range" class="ctrl" min="0" max="300" value="100"><span class="ctrlValue">100</span>管子的间距</li>
+            <!--<li><input type="range" class="ctrl" min="1" max="10"><span class="ctrlValue">6</span></li>-->
         </ul>
     </div>
 </body>

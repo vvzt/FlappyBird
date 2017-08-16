@@ -51,18 +51,22 @@
   background-image: url(@imgBackground);
   -webkit-background-size: @contentWidth @contentHeight - @floorHeight;
   background-size: @contentWidth @contentHeight - @floorHeight;
-  //overflow: hidden;
+  overflow: hidden;
   .score{
+    div{
+      float: left;
+      width: image-width(@imgNumbers)/10;
+      height: image-height(@imgNumbers);
+      background-image: url(@imgNumbers);
+      background-repeat: no-repeat;
+      -webkit-background-size: 1000%;
+      background-size: 1000%;
+      background-position: 0%;
+    }
     position: absolute;
     margin-top: 10px;
-    margin-left: @contentWidth - image-width(@imgNumbers)/10;
-    width: image-width(@imgNumbers)/10;
-    height: image-height(@imgNumbers);
-    background-image: url(@imgNumbers);
-    background-repeat: no-repeat;
-    -webkit-background-size: 1000%;
-    background-size: 1000%;
-    background-position: 0% 0;
+    margin-left: @contentWidth - image-width(@imgNumbers)/10*3.5;
+
   }
   .logo{
     width: image-width(@imgLogo);
