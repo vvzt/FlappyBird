@@ -192,6 +192,7 @@ class birds extends bird{//计分
 
 //DOM构建完成开始执行
 document.addEventListener("DOMContentLoaded",function() {
+    console.log(String.fromCharCode(...[37,99,32,26080,32842,24471,19968,21305,46,46,46]),'color:red');
     let b = new birds();
     b.fly();
     let f = new floor();
@@ -236,7 +237,6 @@ document.addEventListener("DOMContentLoaded",function() {
                     p.gap = ctrls[3].value;
                 }
                 case 4:{
-
                     for(let p of document.getElementsByClassName('pipe')){
                         p.style.marginLeft = p.style.marginRight = `${ctrls[4].value}px`;
                     }
